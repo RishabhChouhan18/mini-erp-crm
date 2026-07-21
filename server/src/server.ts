@@ -7,6 +7,8 @@ import authRoutes from "./routes/auth.routes.js";
 import customerRoutes from "./routes/customer.routes.js";
 import productRoutes from "./routes/product.routes.js";
 
+import challanRoutes from "./routes/challan.routes.js";
+
 dotenv.config();
 
 const app = express();
@@ -42,8 +44,14 @@ app.use(
   productRoutes
 );
 
+
+app.use(
+  "/api/challans",
+  challanRoutes
+);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
