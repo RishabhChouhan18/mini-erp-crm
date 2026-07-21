@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 
 import authRoutes from "./routes/auth.routes.js";
 import customerRoutes from "./routes/customer.routes.js";
-
+import productRoutes from "./routes/product.routes.js";
 
 dotenv.config();
 
@@ -27,7 +27,7 @@ app.get("/api/health", (req: Request, res: Response) => {
   });
 });
 
-app.use("/api/auth", authRoutes);
+
 
 
 app.use("/api/auth", authRoutes);
@@ -35,6 +35,11 @@ app.use("/api/auth", authRoutes);
 app.use(
   "/api/customers",
   customerRoutes
+);
+
+app.use(
+  "/api/products",
+  productRoutes
 );
 
 const PORT = process.env.PORT || 5000;
