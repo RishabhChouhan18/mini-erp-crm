@@ -9,6 +9,8 @@ import productRoutes from "./routes/product.routes.js";
 
 import challanRoutes from "./routes/challan.routes.js";
 
+import dashboardRoutes from "./routes/dashboard.routes.js";
+
 dotenv.config();
 
 const app = express();
@@ -49,6 +51,13 @@ app.use(
   "/api/challans",
   challanRoutes
 );
+
+app.use(
+  "/api/dashboard",
+  dashboardRoutes
+);
+
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
