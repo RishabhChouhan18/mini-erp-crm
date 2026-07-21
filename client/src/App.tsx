@@ -9,22 +9,49 @@ import Dashboard from "./pages/Dashboard";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
+import AppLayout from "./components/layout/AppLayout";
+
+import Customers from "./pages/customers/Customers";
+
+import CustomerForm from "./pages/customers/CustomerForm";
+
 function App() {
   return (
     <Routes>
+      {/* Public */}
+
       <Route
         path="/login"
         element={<Login />}
       />
 
+      {/* Protected ERP */}
+
       <Route
-        path="/dashboard"
         element={
           <ProtectedRoute>
-            <Dashboard />
+            <AppLayout />
           </ProtectedRoute>
         }
-      />
+      >
+        <Route
+          path="/dashboard"
+          element={<Dashboard />}
+        />
+
+        {/* Customer/Product/Challan routes
+            next steps mein yahan add honge */}
+
+        <Route
+          path="/customers"
+          element={<Customers />}
+        />
+
+        <Route
+          path="/customers/new"
+          element={<CustomerForm />}
+        />
+      </Route>
 
       <Route
         path="/"
