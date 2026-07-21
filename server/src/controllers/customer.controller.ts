@@ -379,7 +379,7 @@ export const addFollowUp = async (
       return;
     }
 
-    const { notes, followUpDate } =
+    const { note, followUpDate } =
       validation.data;
 
     const followUp =
@@ -390,7 +390,7 @@ export const addFollowUp = async (
             await tx.followUp.create({
               data: {
                 customerId: id,
-                note : notes,
+                note : note,
                 createdBy: req.user!.userId,
               },
             });

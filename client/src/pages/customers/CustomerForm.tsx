@@ -1,4 +1,5 @@
 import {
+    useEffect,
   useState,
 } from "react";
 
@@ -11,6 +12,7 @@ import {
 import {
   Link,
   useNavigate,
+  useParams,
 } from "react-router-dom";
 
 import api from "../../api/axios";
@@ -22,6 +24,10 @@ import type {
 const CustomerForm = () => {
   const navigate =
     useNavigate();
+
+    const { id } = useParams();
+
+  const isEdit = Boolean(id);
 
   const [form, setForm] =
     useState<CustomerFormData>({
@@ -36,6 +42,73 @@ const CustomerForm = () => {
       followUpDate: "",
       notes: "",
     });
+
+
+
+    useEffect(() => {
+  if (!id) return;
+
+  const fetchCustomer = async () => {
+    try {
+      setLoading(true);
+
+      const response =
+        await api.get(
+          `/customers/${id}`
+        );
+
+      const customer =
+        response.data.data;
+
+      setForm({
+        name:
+          customer.name || "",
+
+        mobile:
+          customer.mobile || "",
+
+        email:
+          customer.email || "",
+
+        businessName:
+          customer.businessName ||
+          "",
+
+        gstNumber:
+          customer.gstNumber || "",
+
+        customerType:
+          customer.customerType,
+
+        address:
+          customer.address || "",
+
+        status:
+          customer.status,
+
+        followUpDate:
+          customer.followUpDate
+            ? customer.followUpDate.slice(
+                0,
+                10
+              )
+            : "",
+
+        notes:
+          customer.notes || "",
+      });
+    } catch (err: any) {
+      setError(
+        err.response?.data?.message ||
+          "Failed to load customer"
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchCustomer();
+}, [id]);
 
   const [loading, setLoading] =
     useState(false);
@@ -89,12 +162,25 @@ const CustomerForm = () => {
           form.notes || undefined,
       };
 
-      await api.post(
-        "/customers",
-        payload
-      );
+     if (isEdit) {
+  await api.put(
+    `/customers/${id}`,
+    payload
+  );
+} else {
+  await api.post(
+    "/customers",
+    payload
+  );
+}
 
-      navigate("/customers");
+      navigate(
+  isEdit
+    ? `/customers/${id}`
+    : "/customers"
+);
+
+
     } catch (err: any) {
       const response =
         err.response?.data;
@@ -128,12 +214,16 @@ const CustomerForm = () => {
 
       <div className="mb-6">
         <h1 className="text-2xl md:text-3xl font-bold text-slate-900">
-          Add Customer
-        </h1>
+  {isEdit
+    ? "Edit Customer"
+    : "Add Customer"}
+</h1>
 
-        <p className="text-slate-500 mt-1">
-          Create a new customer or CRM lead.
-        </p>
+<p className="text-slate-500 mt-1">
+  {isEdit
+    ? "Update customer and CRM information."
+    : "Create a new customer or CRM lead."}
+</p>
       </div>
 
       <form
@@ -306,7 +396,11 @@ const CustomerForm = () => {
           gap-3
         ">
           <Link
-            to="/customers"
+            to={
+  isEdit
+    ? `/customers/${id}`
+    : "/customers"
+}
             className="
               px-4 py-2.5
               border border-slate-300
@@ -344,8 +438,10 @@ const CustomerForm = () => {
             )}
 
             {loading
-              ? "Saving..."
-              : "Save Customer"}
+  ? "Saving..."
+  : isEdit
+  ? "Update Customer"
+  : "Save Customer"}
           </button>
         </div>
       </form>

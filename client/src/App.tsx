@@ -15,6 +15,7 @@ import Customers from "./pages/customers/Customers";
 
 import CustomerForm from "./pages/customers/CustomerForm";
 
+import CustomerDetail from "./pages/customers/CustomerDetail";
 function App() {
   return (
     <Routes>
@@ -72,6 +73,17 @@ function App() {
           />
         }
       />
+
+<Route
+  path="/customers/:id"
+  element={<CustomerDetail />}
+/>
+
+<Route
+  path="/customers/:id/edit"
+  element={<CustomerForm />}
+/>
+
     </Routes>
   );
 }

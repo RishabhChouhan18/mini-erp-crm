@@ -63,7 +63,7 @@ export const updateCustomerSchema =
   createCustomerSchema.partial();
 
 export const followUpSchema = z.object({
-  notes: z
+  note: z
     .string()
     .trim()
     .min(1, "Follow-up note is required"),
