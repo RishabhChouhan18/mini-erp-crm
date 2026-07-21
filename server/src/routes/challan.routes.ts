@@ -58,15 +58,15 @@ router.patch(
   confirmChallan
 );
 
-router.get(
-  "/:id",
-  authorizeRoles(
-    "ADMIN",
-    "SALES",
-    "WAREHOUSE",
-    "ACCOUNTS"
-  ),
-  getChallanById
-);
+// router.get(
+//   "/:id",
+//   authorizeRoles(
+//     "ADMIN",
+//     "SALES",
+//     "WAREHOUSE",
+//     "ACCOUNTS"
+//   ),
+//   getChallanById
+// );
 
 export default router;

@@ -74,6 +74,7 @@ router.get(
   "/:id/movements",
   authorizeRoles(
     "ADMIN",
+    "SALES",
     "WAREHOUSE",
     "ACCOUNTS"
   ),

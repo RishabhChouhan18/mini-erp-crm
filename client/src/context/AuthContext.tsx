@@ -22,6 +22,10 @@ interface AuthContextType {
   ) => Promise<void>;
 
   logout: () => void;
+
+  hasRole: (
+    roles: User["role"][]
+  ) => boolean;
 }
 
 const AuthContext =
@@ -125,6 +129,14 @@ export const AuthProvider = ({
       "/login";
   };
 
+  const hasRole = (
+  roles: User["role"][]
+) => {
+  if (!user) return false;
+
+  return roles.includes(user.role);
+};
+
   return (
     <AuthContext.Provider
       value={{
@@ -132,6 +144,7 @@ export const AuthProvider = ({
         loading,
         login,
         logout,
+        hasRole,
       }}
     >
       {children}
