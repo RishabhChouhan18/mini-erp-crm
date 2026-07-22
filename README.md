@@ -9,7 +9,6 @@ The application demonstrates a practical internal business workflow with **JWT a
 ## Live Demo
 
 ### Frontend
-Replace the URL below with the stable production URL from the Vercel project:
 
 `https://mini-erp-d1jzl7z98-rs-projects-c5448f88.vercel.app/login`
 
