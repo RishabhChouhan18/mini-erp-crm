@@ -1,3 +1,14 @@
+## Demo Credentials
+
+The application includes four demo users to demonstrate role-based access control.
+
+| Role | Email | Password |
+|---|---|---|
+| Admin | `admin@demo.com` | `Demo@123` |
+| Sales | `sales@demo.com` | `Demo@123` |
+| Warehouse | `warehouse@demo.com` | `Demo@123` |
+| Accounts | `accounts@demo.com` | `Demo@123` |
+
 # OpsFlow – Mini ERP + CRM
 
 OpsFlow is a full-stack **Mini ERP + CRM application** designed for managing customers, follow-ups, products, inventory, stock movements, and sales challans from a centralized role-based dashboard.
