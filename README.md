@@ -10,15 +10,15 @@ The application demonstrates a practical internal business workflow with **JWT a
 
 ### Frontend
 
-`https://mini-erp-d1jzl7z98-rs-projects-c5448f88.vercel.app/login`
+https://mini-erp-d1jzl7z98-rs-projects-c5448f88.vercel.app/login
 
 ### Backend API
 
-`https://mini-erp-crm-h411.onrender.com`
+https://vercel.com/rs-projects-c5448f88/mini-erp-crm
 
 ### API Health Check
 
-`https://mini-erp-crm-h411.onrender.com/api/health`
+https://mini-erp-crm-h411.onrender.com/api/health
 
 > Note: The backend is hosted on a free Render instance, so the first request after a period of inactivity may take some time while the service wakes up.
 
